@@ -1,0 +1,68 @@
+<2022-09-15 Thu 22:08>: I used the following contents in the 'config.ru' file:
+#+begin_src ruby
+require "sinatra"
+
+# NOTE: By using the '< Sinatra::Base' inheritance section, we
+# are able to inherit all of the base methods from Sinatra itself:
+class Shark < Sinatra::Base
+    get "/baby_shark" do
+        "<h1>We have a baby shark!</h1>"
+    end
+end
+
+run Shark
+#+end_src
+
+I then ran the following 'rackup config.ru' command in a new terminal:
+#+begin_src bash
+samuelbanya@Samuels-MBP ~/hub/Development/code/phase-3/phase-3-lecture-videos-sinatra-intro
+ $ rackup config.ru
+[2022-09-15 22:10:07] INFO  WEBrick 1.6.1
+[2022-09-15 22:10:07] INFO  ruby 2.7.4 (2021-07-07) [x86_64-darwin21]
+[2022-09-15 22:10:07] INFO  WEBrick::HTTPServer#start: pid=16658 port=9292
+#+end_src
+
+I then visited the 'http://localhost:9292' URL in a new Chrome browser and was prompted with this message:
+#+begin_src text
+Try this:
+# in config.ru
+class Shark
+  get '/' do
+    "Hello World"
+  end
+end
+#+end_src
+
+I then modified the contents of 'config.ru' with the following:
+#+begin_src ruby
+require "sinatra"
+
+# NOTE: By using the '< Sinatra::Base' inheritance section, we
+# are able to inherit all of the base methods from Sinatra itself:
+class Shark < Sinatra::Base
+    get "/" do
+        "Hello World"
+    end
+    get "/baby_shark" do
+        "<h1>&#129416 We have a baby shark!</h1>"
+    end
+end
+
+run Shark
+#+end_src
+
+I then re-ran the related 'rackup config.ru' command again:
+#+begin_src bash
+samuelbanya@Samuels-MBP ~/hub/Development/code/phase-3/phase-3-lecture-videos-sinatra-intro
+ $ rackup config.ru
+[2022-09-15 22:13:06] INFO  WEBrick 1.6.1
+[2022-09-15 22:13:06] INFO  ruby 2.7.4 (2021-07-07) [x86_64-darwin21]
+[2022-09-15 22:13:06] INFO  WEBrick::HTTPServer#start: pid=16935 port=9292
+#+end_src
+
+I then went to the same 'http://localhost:9292/' URL again which then simply returned 'Hello World'.
+
+I then went to the 'http://localhost:9292/baby_shark' and received the following text successfully:
+#+begin_src text
+🦈 We have a baby shark!
+#+end_src
